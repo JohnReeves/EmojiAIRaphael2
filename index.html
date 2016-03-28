@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Emojiairaphael2 by JohnReeves</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Emojiairaphael2</h1>
+      <h2 class="project-tagline">Functions and Interaction with JavaScript &amp; Raphael</h2>
+      <a href="https://github.com/JohnReeves/EmojiAIRaphael2" class="btn">View on GitHub</a>
+      <a href="https://github.com/JohnReeves/EmojiAIRaphael2/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/JohnReeves/EmojiAIRaphael2/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="1-last-worksheet" class="anchor" href="#1-last-worksheet" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Last Worksheet</h1>
+
+<p><img src="http://i.imgur.com/zK4xZhV.png" alt="Imgur"></p>
+
+<p>Find and open your JSFiddle link from last week - as we're going to be working on adding things to it today.</p>
+
+<h1>
+<a id="2-functions" class="anchor" href="#2-functions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Functions</h1>
+
+<p>First off, we're going to make our code a little tidier by creating ourselves two functions <code>setUp</code> (which will set up our object) and <code>drawShapes</code> (which will do all our drawing).</p>
+
+<p>We need to create a function like:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">setUp</span>(){
+
+}</pre></div>
+
+<p>We will then need to put all our setup code inside the two squiggly brackets <code>{ }</code>. Variables that are created within a function aren't accessible to things outside however we can update it! So if we move our <code>emojiObject</code> before our function - we can update it inside our setup function - and use it in our drawing function.</p>
+
+<p>Creating a function does <strong>not</strong> mean that code will run automatically - we have to <code>call</code> the function like this:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">setUp</span>();</pre></div>
+
+<p>My code looks like this:</p>
+
+<p><img src="http://i.imgur.com/ohLADF4.png" alt="Imgur"></p>
+
+<p>All that remains is to tidy up all of our drawing code into another function. My code looks like this:</p>
+
+<p><img src="http://i.imgur.com/lcWkbQT.png" alt="Imgur"></p>
+
+<h1>
+<a id="3-arrays" class="anchor" href="#3-arrays" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Arrays</h1>
+
+<p>Next - we can create things called arrays - which can hold several things inside. I'm going to create an array to hold all the colours my emoji's face can be filled with like this:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> fillColours <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">"</span>#ffcc00<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>#cc0000<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>#1E88E5<span class="pl-pds">"</span></span>];</pre></div>
+
+<p>I can then use this array inside my setUp like:</p>
+
+<div class="highlight highlight-source-js"><pre>emojiObject <span class="pl-k">=</span> {
+        <span class="pl-s"><span class="pl-pds">'</span>fill<span class="pl-pds">'</span></span><span class="pl-k">:</span> fillColours[<span class="pl-c1">2</span>],</pre></div>
+
+<p>Note - the first thing inside an array always starts at 0 - this means because i have 3 things inside my <code>fillColours</code> I can have either 0, 1, or 2. </p>
+
+<p>My code now looks like this:</p>
+
+<p><img src="http://i.imgur.com/uZcUPMb.png" alt="Imgur"></p>
+
+<h1>
+<a id="4-random" class="anchor" href="#4-random" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. Random</h1>
+
+<p>Now that we have an array we can get the computer to generate a random colour for us. </p>
+
+<p>Firstly, we need to create a function to calculate a random number between two numbers for us:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">randomNumber</span>(<span class="pl-smi">min</span>,<span class="pl-smi">max</span>)
+{
+  <span class="pl-k">return</span> <span class="pl-c1">Math</span>.<span class="pl-c1">floor</span>(<span class="pl-c1">Math</span>.<span class="pl-c1">random</span>()<span class="pl-k">*</span>(max<span class="pl-k">-</span>min)<span class="pl-k">+</span>min);
+}</pre></div>
+
+<p>We can then use this in our setUp like:</p>
+
+<div class="highlight highlight-source-js"><pre>emojiObject <span class="pl-k">=</span> {
+        <span class="pl-s"><span class="pl-pds">'</span>fill<span class="pl-pds">'</span></span><span class="pl-k">:</span> fillColours[ <span class="pl-en">randomNumber</span>(<span class="pl-c1">0</span>, <span class="pl-c1">3</span>) ],</pre></div>
+
+<p>We can improve upon our code - so that if we added more colours we wouldn't have to update the <code>max</code> number of colours for the random function. To do this we can ask the computer for the <code>length</code> of our array, like this:</p>
+
+<div class="highlight highlight-source-js"><pre>emojiObject <span class="pl-k">=</span> {
+        <span class="pl-s"><span class="pl-pds">'</span>fill<span class="pl-pds">'</span></span><span class="pl-k">:</span> fillColours[ <span class="pl-en">randomNumber</span>(<span class="pl-c1">0</span>, <span class="pl-smi">fillColours</span>.<span class="pl-c1">length</span>) ],</pre></div>
+
+<p>My code looks like this:
+<img src="http://i.imgur.com/d7MO6tv.png" alt="Imgur"></p>
+
+<h1>
+<a id="5-buttons" class="anchor" href="#5-buttons" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5. Buttons</h1>
+
+<p>We're now going to create ourselves our very own "reset" button - so we can generate our own random emojis without having to press the run button loads.</p>
+
+<p>Firstly, we need to create a button - I've done this by creating a rectangle and placing some text on top like this:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> resetButton <span class="pl-k">=</span> <span class="pl-smi">paper</span>.<span class="pl-en">rect</span>(<span class="pl-c1">20</span>, <span class="pl-c1">20</span>, <span class="pl-c1">130</span>, <span class="pl-c1">40</span>, <span class="pl-c1">10</span>);
+<span class="pl-smi">resetButton</span>.<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">"</span>fill<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>#bfbfbf<span class="pl-pds">"</span></span>);
+
+<span class="pl-k">var</span> resetText <span class="pl-k">=</span> <span class="pl-smi">paper</span>.<span class="pl-c1">text</span>(<span class="pl-c1">80</span>, <span class="pl-c1">40</span>, <span class="pl-s"><span class="pl-pds">"</span>Reset<span class="pl-pds">"</span></span>);
+<span class="pl-smi">resetText</span>.<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">"</span>font-size<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>24<span class="pl-pds">"</span></span>);</pre></div>
+
+<p>Note - I've had to change my emoji's cy value down so that my button isn't drawn behind it.</p>
+
+<p>Next we can listen for when people click the <code>resetButton</code> like this:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">resetButton</span>.<span class="pl-c1">click</span>( <span class="pl-k">function</span>() {
+
+});</pre></div>
+
+<p>Finally, because we created our two functions to <code>setUp()</code> and <code>drawShapes()</code> we can just call these to setup and draw all our shapes again. Before we do that, we ought to clear our piece of paper by deleting everything on it - we can do all of that like this inside our reset button :</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">paper</span>.<span class="pl-c1">clear</span>();
+
+<span class="pl-en">setUp</span>();
+<span class="pl-en">drawShapes</span>();</pre></div>
+
+<p>My code looks like this:</p>
+
+<p><img src="http://i.imgur.com/oA7Ul4Z.png" alt="Imgur"></p>
+
+<h1>
+<a id="6-finishing" class="anchor" href="#6-finishing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6. Finishing</h1>
+
+<p>Before you move onto the next worksheet make sure all your emoji properties have arrays with at least <strong>5 things</strong> in them - this way your emoji should change a lot each time you reset!</p>
+
+<p><img class="emoji" title=":star:" alt=":star:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2b50.png" height="20" width="20" align="absmiddle"> When you've finished - don't forget to save your JSFiddle and send us your link above. <img class="emoji" title=":star2:" alt=":star2:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f31f.png" height="20" width="20" align="absmiddle"></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/JohnReeves/EmojiAIRaphael2">Emojiairaphael2</a> is maintained by <a href="https://github.com/JohnReeves">JohnReeves</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
