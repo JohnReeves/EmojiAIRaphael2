@@ -1,0 +1,126 @@
+#1. Last Worksheet
+
+![Imgur](http://i.imgur.com/zK4xZhV.png)
+
+Find and open your JSFiddle link from last week - as we're going to be working on adding things to it today.
+
+#2. Functions
+
+First off, we're going to make our code a little tidier by creating ourselves two functions `setUp` (which will set up our object) and `drawShapes` (which will do all our drawing).
+
+We need to create a function like:
+
+```js
+function setUp(){
+
+}
+```
+
+We will then need to put all our setup code inside the two squiggly brackets `{ }`. Variables that are created within a function aren't accessible to things outside however we can update it! So if we move our `emojiObject` before our function - we can update it inside our setup function - and use it in our drawing function.
+
+Creating a function does **not** mean that code will run automatically - we have to `call` the function like this:
+
+```js
+setUp();
+```
+
+My code looks like this:
+
+![Imgur](http://i.imgur.com/ohLADF4.png)
+
+All that remains is to tidy up all of our drawing code into another function. My code looks like this:
+
+![Imgur](http://i.imgur.com/lcWkbQT.png)
+
+#3. Arrays
+
+Next - we can create things called arrays - which can hold several things inside. I'm going to create an array to hold all the colours my emoji's face can be filled with like this:
+
+```js
+var fillColours = ["#ffcc00", "#cc0000", "#1E88E5"];
+```
+
+I can then use this array inside my setUp like:
+```js
+emojiObject = {
+        'fill': fillColours[2],
+```
+
+Note - the first thing inside an array always starts at 0 - this means because i have 3 things inside my `fillColours` I can have either 0, 1, or 2. 
+
+My code now looks like this:
+
+![Imgur](http://i.imgur.com/uZcUPMb.png)
+
+#4. Random
+
+Now that we have an array we can get the computer to generate a random colour for us. 
+
+Firstly, we need to create a function to calculate a random number between two numbers for us:
+
+```js
+function randomNumber(min,max)
+{
+  return Math.floor(Math.random()*(max-min)+min);
+}
+```
+
+We can then use this in our setUp like:
+
+```js
+emojiObject = {
+        'fill': fillColours[ randomNumber(0, 3) ],
+```
+
+We can improve upon our code - so that if we added more colours we wouldn't have to update the `max` number of colours for the random function. To do this we can ask the computer for the `length` of our array, like this:
+
+```js
+emojiObject = {
+        'fill': fillColours[ randomNumber(0, fillColours.length) ],
+```
+
+My code looks like this:
+![Imgur](http://i.imgur.com/d7MO6tv.png)
+
+#5. Buttons
+
+We're now going to create ourselves our very own "reset" button - so we can generate our own random emojis without having to press the run button loads.
+
+Firstly, we need to create a button - I've done this by creating a rectangle and placing some text on top like this:
+
+```js
+var resetButton = paper.rect(20, 20, 130, 40, 10);
+resetButton.attr("fill", "#bfbfbf");
+    
+var resetText = paper.text(80, 40, "Reset");
+resetText.attr("font-size", "24");
+```
+
+Note - I've had to change my emoji's cy value down so that my button isn't drawn behind it.
+
+Next we can listen for when people click the `resetButton` like this:
+
+```js
+resetButton.click( function() {
+        
+});
+```
+
+Finally, because we created our two functions to `setUp()` and `drawShapes()` we can just call these to setup and draw all our shapes again. Before we do that, we ought to clear our piece of paper by deleting everything on it - we can do all of that like this inside our reset button :
+
+```js
+paper.clear();
+        
+setUp();
+drawShapes();
+```
+
+My code looks like this:
+
+![Imgur](http://i.imgur.com/oA7Ul4Z.png)
+
+#6. Finishing
+
+Before you move onto the next worksheet make sure all your emoji properties have arrays with at least **5 things** in them - this way your emoji should change a lot each time you reset!
+
+:star: When you've finished - don't forget to save your JSFiddle and send us your link above. :star2:
